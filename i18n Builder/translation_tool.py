@@ -103,7 +103,7 @@ class TranslationTool:
         text_array = []
         # check 30,000 characters per request
         if self.is_over_one_request_restrict(self, text):
-            text_array = text.split(".")
+            text_array = re.findall(r"[\w']+|[.,!?;]", text)
 
         if len(text_array) == 0:
             translated_text = self.restrict_api(self, text)

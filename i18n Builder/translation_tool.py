@@ -26,8 +26,8 @@ unique_id_history = {}
 class TranslationTool:
     def __init__(self):
         self.extracted_text = {}
-        self.one_request_length_restriction = 30000
-        self.restriction_length_per_100 = 100000
+        self.ONE_REQUEST_LENGTH_RESTRICTION = 30000
+        self.LENGTH_PER_100_RESTRICTION = 100000
         self.text_count_history = 0
         self.start_time = time.time()
         self.elapsed_time = time.time()
@@ -117,7 +117,7 @@ class TranslationTool:
     @staticmethod
     def is_over_one_request_restrict(self, text):
         text_length = len(text)
-        if text_length >= self.one_request_length_restriction:
+        if text_length >= self.ONE_REQUEST_LENGTH_RESTRICTION :
             return True
         return False
 
@@ -127,7 +127,7 @@ class TranslationTool:
         self.text_count_history += text_length
         self.elapsed_time = time.time() - self.start_time
         if self.elapsed_time < 100:
-            if self.text_count_history >= self.restriction_length_per_100:
+            if self.text_count_history >= self.LENGTH_PER_100_RESTRICTION:
                 return True
             return False
         return False
